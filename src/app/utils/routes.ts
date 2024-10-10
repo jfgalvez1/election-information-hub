@@ -19,5 +19,15 @@ export const EHRoutes = {
         name: 'About Us',
         path: '/about-us',
     },
+    login: {
+        id: 'login',
+        name: 'Log In',
+        path: '/auth/login',
+    },
+    register: {
+        id: 'register',
+        name: 'Register',
+        path: '/auth/register',
+    },
 
 };

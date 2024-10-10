@@ -6,11 +6,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from 'next/link';
 import { EHRoutes } from '../utils/routes';
@@ -24,6 +19,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function TopBar() {
   const pathname = usePathname();
+  const { push } = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -80,6 +76,7 @@ function TopBar() {
           <Box className="flex flex-row items-center gap-3">
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 0 }} />
             <Typography
+              onClick={() => push('/')}
               variant="h6"
               noWrap
               component="a"
@@ -191,9 +188,9 @@ function TopBar() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* When User is Loggedin */}
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              {/* Profile Icon */}
               <IconButton
                 onClick={handleOpenUserMenu}
                 className="flex flex-row gap-3"
@@ -241,6 +238,23 @@ function TopBar() {
                 </MenuItem>
               ))}
             </Menu>
+          </Box> */}
+
+          <Box sx={{ flexGrow: 0 }}>
+            <div className="hidden lg:flex items-center gap-2">
+              <button
+                className="bg-white text-gray-800 font-bold py-2 px-6 rounded-full border border-gray-300 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-300"
+                onClick={() => push(EHRoutes.login.path)}
+              >
+                Login
+              </button>
+              <button
+                className="bg-white text-gray-800 font-bold py-2 px-6 rounded-full border border-gray-300 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-300"
+                onClick={() => push(EHRoutes.register.path)}
+              >
+                Register
+              </button>
+            </div>
           </Box>
         </Toolbar>
       </div>
